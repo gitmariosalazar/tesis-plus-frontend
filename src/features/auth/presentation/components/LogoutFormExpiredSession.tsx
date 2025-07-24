@@ -41,7 +41,7 @@ const LogoutExpiredSessionForm: React.FC<LogoutExpiredSessionFormProps> = ({
     <ExpiredSession
       open={open}
       onRefresh={sessionStatus === 'expired' ? refresh : undefined}
-      onExit={logout}
+      onExit={async () => logout()}
     />
   );
 };
