@@ -1,0 +1,12 @@
+.user-menu-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(71, 2, 140);
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 8px;
+}
+.user-menu-avatar:hover {
+  background-color: rgb(91, 2, 170);
+}

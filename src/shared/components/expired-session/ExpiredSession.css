@@ -1,0 +1,68 @@
+.expired-session-container {
+  padding: 0.1rem;
+}
+
+.expired-session-laptop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.laptop-icon {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+}
+
+.expired-session-icon-laptop {
+  font-size: 10rem;
+  color: #0070f3;
+}
+
+.expired-session-icon-smile {
+  position: absolute;
+  font-size: 3.5rem;
+  color: #000dff;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.expired-session-icon-warning {
+  font-size: 5rem;
+  position: absolute;
+  top: 0;
+  right: 30%;
+}
+
+.expired-session-message {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.expired-session-message p {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .expired-session-icon-laptop {
+    font-size: 6rem;
+  }
+
+  .expired-session-icon-smile {
+    font-size: 2.5rem;
+  }
+
+  .expired-session-icon-warning {
+    font-size: 3rem;
+    top: -10%;
+    right: 30%;
+  }
+}

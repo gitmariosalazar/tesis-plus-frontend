@@ -1,0 +1,237 @@
+/* Base styles */
+.custom-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  min-height: 28px;
+  min-width: 28px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  gap: 4px;
+  user-select: none;
+}
+
+/* Button Circle */
+.btn-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  min-height: 28px;
+  min-width: 28px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* Box shadow on hover (except text) */
+.custom-button:not(.btn-variant-text):hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Slight inner shadow on active */
+.custom-button:not(.btn-variant-text):active {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Optional: Add initial subtle shadow only for solid or filled */
+.btn-variant-solid,
+.btn-variant-filled {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Remove shadow when disabled */
+.custom-button.disabled,
+.custom-button:disabled {
+  box-shadow: none !important;
+}
+
+.custom-button:focus-visible {
+  outline: 2px solid var(--btn-color-dark);
+  outline-offset: 2px;
+}
+
+/* Disabled */
+.custom-button.disabled,
+.custom-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Spinner */
+.spinner {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Icon inside button */
+.button-icon {
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Variants */
+.btn-variant-solid {
+  color: white;
+  background-color: var(--btn-color);
+  border: none;
+}
+.btn-variant-solid:hover {
+  background-color: var(--btn-color-dark);
+}
+.btn-variant-solid:active {
+  background-color: var(--btn-color-dark);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-variant-outlined {
+  background-color: transparent;
+  border: 1px solid var(--btn-color);
+  color: var(--btn-color);
+}
+.btn-variant-outlined:hover {
+  background-color: var(--btn-color-light);
+}
+.btn-variant-outlined:active {
+  background-color: var(--btn-color-light);
+  border-color: var(--btn-color-dark);
+  color: var(--btn-color-dark);
+}
+
+.btn-variant-dashed {
+  background-color: transparent;
+  border: 1px dashed var(--btn-color);
+  color: var(--btn-color);
+}
+.btn-variant-dashed:hover {
+  background-color: var(--btn-color-light);
+}
+.btn-variant-dashed:active {
+  background-color: var(--btn-color-light);
+  border-color: var(--btn-color-dark);
+  color: var(--btn-color-dark);
+}
+
+.btn-variant-filled {
+  background-color: var(--btn-color-light);
+  color: var(--btn-color-dark);
+  border: none;
+}
+.btn-variant-filled:hover {
+  background-color: var(--btn-color);
+  color: white;
+}
+.btn-variant-filled:active {
+  background-color: var(--btn-color-dark);
+  color: white;
+}
+
+.btn-variant-text {
+  background: none;
+  border: none;
+  color: var(--btn-color);
+  padding: 6px 8px;
+  height: auto;
+}
+.btn-variant-text:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.btn-variant-text:active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Color variables */
+.btn-color-default {
+  --btn-color: #ccc;
+  --btn-color-light: #f5f5f5;
+  --btn-color-dark: #999;
+}
+.btn-color-primary {
+  --btn-color: #1890ff;
+  --btn-color-light: #e6f7ff;
+  --btn-color-dark: #0050b3;
+}
+.btn-color-danger {
+  --btn-color: #ff4d4f;
+  --btn-color-light: #fff1f0;
+  --btn-color-dark: #a8071a;
+}
+.btn-color-purple {
+  --btn-color: #722ed1;
+  --btn-color-light: #f9f0ff;
+  --btn-color-dark: #391085;
+}
+.btn-color-cyan {
+  --btn-color: #13c2c2;
+  --btn-color-light: #e6fffb;
+  --btn-color-dark: #006d75;
+}
+.btn-color-pink {
+  --btn-color: #eb2f96;
+  --btn-color-light: #fff0f6;
+  --btn-color-dark: #9e1068;
+}
+.btn-color-yellow {
+  --btn-color: #fadb14;
+  --btn-color-light: #feffe6;
+  --btn-color-dark: #ad8b00;
+}
+.btn-color-orange {
+  --btn-color: #fa8c16;
+  --btn-color-light: #fff7e6;
+  --btn-color-dark: #ad4e00;
+}
+.btn-color-blue {
+  --btn-color: #2f54eb;
+  --btn-color-light: #f0f5ff;
+  --btn-color-dark: #10239e;
+}
+.btn-color-green {
+  --btn-color: #52c41a;
+  --btn-color-light: #f6ffed;
+  --btn-color-dark: #237804;
+}
+.btn-color-magenta {
+  --btn-color: #eb2f96;
+  --btn-color-light: #fff0f6;
+  --btn-color-dark: #9e1068;
+}
+.btn-color-red {
+  --btn-color: #f5222d;
+  --btn-color-light: #fff1f0;
+  --btn-color-dark: #a8071a;
+}
+.btn-color-volcano {
+  --btn-color: #fa541c;
+  --btn-color-light: #fff2e8;
+  --btn-color-dark: #a8071a;
+}
+.btn-color-geekblue {
+  --btn-color: #2f54eb;
+  --btn-color-light: #f0f5ff;
+  --btn-color-dark: #10239e;
+}
+.btn-color-lime {
+  --btn-color: #a0d911;
+  --btn-color-light: #fcffe6;
+  --btn-color-dark: #5b8c00;
+}
+.btn-color-gold {
+  --btn-color: #faad14;
+  --btn-color-light: #fffbe6;
+  --btn-color-dark: #ad6800;
+}

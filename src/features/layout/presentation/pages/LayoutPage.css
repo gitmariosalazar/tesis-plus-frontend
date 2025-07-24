@@ -1,0 +1,123 @@
+.layout-page {
+  display: grid;
+  grid-template-areas:
+    'aside header'
+    'aside main'
+    'footer footer';
+  grid-template-columns: 257px 1fr;
+  grid-template-rows: 50px 1fr 40px; /* Header, Main, Footer */
+  height: 98.5vh;
+  overflow: hidden;
+  transition: grid-template-columns 0.3s ease;
+}
+
+.layout-page.collapsed {
+  grid-template-columns: 82px 1fr;
+}
+
+.aside-layout {
+  grid-area: aside;
+  overflow-y: hidden;
+  transition: width 0.3s ease;
+}
+
+.header-page {
+  grid-area: header;
+  background-color: #001f3f;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.main-layout {
+  grid-area: main;
+  background-color: #f0f2f5;
+  padding: 4px;
+  overflow-y: auto;
+}
+
+.footer-layout {
+  grid-area: footer;
+  background-color: #001f3f;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  height: 97.7%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-page-box {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  color: white;
+}
+
+.header-page-search {
+  margin-right: 10px;
+}
+
+.header-page-icons {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  color: rgb(218, 218, 218);
+  position: relative;
+  font-size: 1px;
+}
+
+.header-page-icons span {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 17px;
+  height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.header-page-icons span p {
+  margin: 0;
+  font-size: 11px;
+  text-align: center;
+  padding: 1px;
+}
+
+.header-page-icons:hover {
+  color: rgb(255, 255, 255);
+}
+
+/* Responsive: oculta el aside en móviles */
+@media (max-width: 768px) {
+  .layout-page,
+  .layout-page.collapsed {
+    grid-template-areas:
+      'header'
+      'main'
+      'footer';
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 1fr 40px;
+  }
+
+  .aside-layout {
+    display: none;
+  }
+}

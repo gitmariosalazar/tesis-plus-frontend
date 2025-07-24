@@ -1,0 +1,4 @@
+/* Asegúrate de usar alta especificidad y !important */
+.custom-dropdown-menu .ant-dropdown-menu-item:hover {
+  background-color: #c8f0ff !important; /* azul claro como ejemplo */
+}

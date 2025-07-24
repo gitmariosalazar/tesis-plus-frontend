@@ -1,0 +1,49 @@
+.loading-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: transparent;
+}
+
+.loading-circle {
+  width: 150px;
+  height: 150px;
+  border: 10px solid rgba(93, 0, 255, 0.1);
+  border-top: 10px solid #09037e;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.loading-text {
+  position: absolute;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  color: #dbd2d2;
+}
+
+.loading-text span {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.loading-text p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ded3d3;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

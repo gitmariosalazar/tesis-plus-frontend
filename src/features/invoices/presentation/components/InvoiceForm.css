@@ -1,0 +1,18 @@
+.invoice-form-container {
+  max-width: 900px; /* Ajustable para pantallas grandes */
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-actions-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 70%;
+  gap: 10px;
+}

@@ -1,0 +1,33 @@
+.confirm-dialog-container {
+  padding: 16px;
+}
+
+.confirm-dialog-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.confirm-dialog-content div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.confirm-dialog-content p {
+  font-size: 20px;
+  color: var(--color-text);
+  margin-top: 8px;
+}
+
+.icon-question {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f2f5;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}

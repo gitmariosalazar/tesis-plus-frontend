@@ -1,0 +1,163 @@
+/* General layout */
+.sign-up-page {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  flex-direction: row;
+}
+
+/* Left panel */
+.sign-up-left {
+  flex: 1;
+  background-color: #f0f4ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.logo-info {
+  max-width: 500px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.logo-entity {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Right panel */
+.sign-up-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.sign-up-container {
+  width: 100%;
+  max-width: 700px;
+  border: 1px solid #61dafbaa;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(97, 218, 251, 0.2);
+}
+
+.sign-up-title {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.logo-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-sign-up {
+  width: 80px;
+  height: auto;
+  margin-top: 0.5rem;
+}
+
+/* Continue section */
+.continue-with {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.continue-with hr {
+  flex: 1;
+}
+
+.continue-with p {
+  margin: 0;
+  color: #a2a9da;
+  font-size: 0.9rem;
+}
+
+/* Auth providers */
+.login-with {
+  border: 1px solid gray;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.login-icons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.icon-login {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+.icon-login:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 0.2em #61dafbaa);
+}
+
+/* Forgot and sign up */
+
+.fp-content {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.forgot-password {
+  font-size: 0.8rem;
+  color: #3b82f6;
+  text-decoration: none;
+  float: right;
+}
+
+.forgot-password:hover {
+  color: #2563eb;
+}
+
+.no-account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.sign-in {
+  color: #3b82f6;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  text-decoration: none;
+}
+
+.sign-in:hover {
+  color: magenta;
+}
+
+/* Responsive */
+@media (max-width: 1170px) {
+  .sign-up-page {
+    flex-direction: column;
+  }
+
+  .sign-up-left {
+    display: none;
+  }
+}

@@ -1,0 +1,23 @@
+.home-page {
+  margin: 0;
+  background: linear-gradient(135deg, #1646b5, #0c31a0, #000e88);
+  min-height: 98.5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-page h1 {
+  color: white;
+  font-size: 4.5rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.home-page p {
+  color: rgb(213, 213, 213);
+  font-size: 1.8rem;
+  text-align: center;
+  margin: 20px 0;
+  width: 70%;
+}

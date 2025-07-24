@@ -1,0 +1,37 @@
+.input-fields-container-signup {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
+  column-gap: 1rem; /* Espacio entre columnas */
+}
+
+/* Campos que ocupan las dos columnas */
+.input-fields-container-signup .grid-full {
+  grid-column: span 2;
+}
+
+/* Campos que ocupan solo una columna (como Card Id y Phone) */
+.input-fields-container-signup .grid-half {
+  grid-column: span 1;
+}
+
+.button-sign-up-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.btn-signup-page {
+  width: 100%;
+}
+
+@media screen and (max-width: 570px) {
+  .input-fields-container-signup {
+    grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+  }
+
+  .input-fields-container-signup .grid-full,
+  .input-fields-container-signup .grid-half {
+    grid-column: span 1; /* Asegura que todos los campos ocupen una columna */
+  }
+}

@@ -1,0 +1,13 @@
+.details-notifications {
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.notification-message {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 90%;
+}
