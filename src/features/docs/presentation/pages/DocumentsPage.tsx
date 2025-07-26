@@ -2,6 +2,7 @@ import { CustomButton } from '@/shared/components/button/Button';
 import StatusBadge from '@/shared/components/status/StatusBadge';
 import DataTable, { Column } from '@/shared/components/table/DataTable';
 import React from 'react';
+import { FaFileInvoice } from 'react-icons/fa';
 import {
   MdDeleteForever,
   MdEditSquare,
@@ -11,6 +12,9 @@ import DocumentsEditForm from '../components/DocumentsEditForm';
 import DeleteDocumentsConfirm from '../components/DocumentsDeleteConfirm';
 import DocumentsView from '../components/DocumentsView';
 import { documentsData } from '@/shared/api/data/documents';
+import { DocumentsResponse } from '@/domain/services/docs/documents/dto/response/documents.response';
+import { StatusResponse } from '@/domain/services/docs/status/dto/response/status.response';
+import { TypeDocumentsResponse } from '@/domain/services/docs/type-documents/dto/response/type-documents.response';
 
 const DocumentsPage = () => {
   const [openEditModal, setOpenEditModal] = React.useState(false);
@@ -44,33 +48,73 @@ const DocumentsPage = () => {
     setOpenEditModal(false);
   };
 
-  interface Document {
-    process_code: string;
-    document_title: string;
-    file: string;
-    isvalid: boolean;
-    date: string;
-    status: {
-      code: number;
-      name: string;
-    };
-  }
-
-  const documents: Document[] = documentsData; // Replace with actual data
+  const documents: DocumentsResponse[] = documentsData; // Replace with actual data
 
   // Define columns for the document table
-  const columns: Column<Document>[] = [
-    { header: 'Document ID', value: 'process_code', sortable: true },
-    { header: 'Title', value: 'document_title', sortable: true },
-    { header: 'File URL', value: 'file', sortable: true },
-    { header: 'Valid', value: 'isvalid', sortable: true },
-    { header: 'Date', value: 'date', sortable: true },
+  const columns: Column<DocumentsResponse>[] = [
+    {
+      header: 'Document ID',
+      value: 'idDocument',
+      sortable: true,
+      width: 'very-small-width-cell',
+    },
+    {
+      header: 'Title',
+      value: 'name',
+      sortable: true,
+      width: 'small-width-cell',
+    },
+    {
+      header: 'File URL',
+      value: 'documentUrl',
+      sortable: true,
+      render: (value: string) => (
+        <a href={value} target="_blank" rel="noopener noreferrer">
+          <FaFileInvoice />
+        </a>
+      ),
+      width: 'very-small-width-cell',
+    },
+    {
+      header: 'Valid',
+      value: 'status.idStatus',
+      sortable: true,
+      width: 'small-width-cell',
+    },
+    {
+      header: 'Request Date',
+      value: 'dateRequest',
+      sortable: true,
+      render: (value: Date | string) => new Date(value).toLocaleDateString(),
+      width: 'small-width-cell',
+    },
+    {
+      header: 'Reception Date',
+      value: 'dateReception',
+      sortable: true,
+      render: (value: Date | string) => new Date(value).toLocaleDateString(),
+      width: 'small-width-cell',
+    },
+    {
+      header: 'Type',
+      value: 'typeDocument',
+      sortable: true,
+      render: (value: TypeDocumentsResponse) => value.title || 'N/A',
+      width: 'small-width-cell',
+    },
     {
       header: 'Status',
       value: 'status',
-      render: (value: { code: number; name: string }) => (
-        <StatusBadge code={value.code} label={value.name} />
+      render: (value: StatusResponse) => (
+        <StatusBadge code={value.idStatus} label={value.name} />
       ),
+      width: 'small-width-cell',
+    },
+    {
+      header: 'Manager Name',
+      value: 'managerName',
+      sortable: true,
+      width: 'small-width-cell',
     },
     {
       header: 'Options',
@@ -102,14 +146,15 @@ const DocumentsPage = () => {
           </div>
         </div>
       ),
+      width: 'small-width-cell',
     },
   ];
 
   return (
     <div className="documents-page">
       <div className="header-table-ant">
-        <DataTable<Document>
-          data={documents} // Replace with actual data
+        <DataTable<DocumentsResponse>
+          data={documents}
           columns={columns}
           table_title="Document Management"
           button={

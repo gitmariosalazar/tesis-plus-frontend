@@ -13,7 +13,6 @@ interface Column {
 interface CustomTableProps {
   data: Record<string, any>[];
   columns: Column[];
-  rowsPerPage?: number;
   table_title: string;
   button?: ReactNode;
 }
@@ -21,7 +20,6 @@ interface CustomTableProps {
 const CustomTable: React.FC<CustomTableProps> = ({
   data,
   columns,
-  rowsPerPage = 12,
   table_title,
   button,
 }) => {
@@ -31,6 +29,14 @@ const CustomTable: React.FC<CustomTableProps> = ({
   const [filterText, setFilterText] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [pageBlock, setPageBlock] = useState(0);
+  const [rowsPerPageValue, setRowsPerPageValue] = useState<number>(10);
+  
+  const handleChangeRowsPerPage = (value: number | null) => {
+    if (value) {
+      setRowsPerPageValue(value);
+    }
+  };
+
   const pagesPerBlock = 6;
 
   const totalPages = Math.ceil(
@@ -41,7 +47,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
           .toLowerCase()
           .includes(filterText.toLowerCase())
       )
-    ).length / rowsPerPage
+    ).length / rowsPerPageValue
   );
 
   const handlePageChange = (newPage: number) => {
@@ -79,8 +85,8 @@ const CustomTable: React.FC<CustomTableProps> = ({
   );
 
   const paginatedData = filteredData.slice(
-    (currentPage - 1) * rowsPerPage,
-    currentPage * rowsPerPage
+    (currentPage - 1) * rowsPerPageValue,
+    currentPage * rowsPerPageValue
   );
 
   const startPage = pageBlock * pagesPerBlock + 1;
@@ -106,7 +112,8 @@ const CustomTable: React.FC<CustomTableProps> = ({
         title={table_title}
         button={button}
         onSearch={handleFilterChange}
-        onButtonClick={() => {}}
+        onButtonClick={() => { }}
+        onChangePageNumber={handleChangeRowsPerPage}
       />
       <div className="custom-table-header">
         {columns.map((column) => (

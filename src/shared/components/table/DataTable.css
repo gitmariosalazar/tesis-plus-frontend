@@ -1,0 +1,272 @@
+/* Contenedor principal de la tabla */
+.custom-table {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Contenedor con scroll horizontal y vertical */
+.custom-table-container {
+  overflow-x: auto;
+  overflow-y: auto;
+  background-color: #f9fafb;
+  max-height: 76vh;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+  width: 100%;
+  position: relative;
+}
+
+/* Encabezado */
+.custom-table-header {
+  display: table;
+  min-width: 100%;
+  width: max-content;
+  table-layout: fixed;
+  background-color: #e5e7eb;
+  border-collapse: collapse;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+/* Fila del encabezado */
+.custom-table-header-row {
+  display: table-row;
+}
+
+/* Celda del encabezado */
+.custom-table-header-cell {
+  display: table-cell;
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #1e3a8a;
+  background-color: #e5e7eb;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  vertical-align: middle;
+  cursor: pointer;
+  border-right: 1px solid #d1d5db;
+  border-bottom: 1px solid #d1d5db;
+}
+
+
+.custom-table-header-cell {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Cuerpo */
+.custom-table-body {
+  display: table;
+  min-width: 100%;
+  width: max-content;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+/* Fila de datos */
+.custom-table-row {
+  display: table-row;
+  transition: background-color 0.2s ease;
+}
+
+/* Alternancia de colores en filas */
+.row-one {
+  background-color: #ffffff;
+}
+
+.row-two {
+  background-color: #f1f5f9;
+}
+
+.custom-table-row:hover {
+  background-color: #e0f2fe;
+}
+
+/* Celda de datos */
+.custom-table-cell {
+  display: table-cell;
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  color: #334155;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  vertical-align: middle;
+  border-right: 1px solid #d1d5db;
+}
+
+/* Asegurar alineación de columnas con ancho mínimo según tipo */
+.custom-table-header-cell,
+.custom-table-cell {
+  min-width: 280px; /* Ancho mínimo por defecto */
+}
+
+.custom-table-header-cell.very-small-width-cell,
+.custom-table-cell.very-small-width-cell {
+  min-width: 100px; /* Ancho para columnas muy pequeñas */
+  text-align: center; /* Centrado para very-small-width-cell */
+}
+
+.custom-table-header-cell.small-width-cell,
+.custom-table-cell.small-width-cell {
+  min-width: 150px; /* Ancho para columnas pequeñas */
+  text-align: center; /* Centrado para small-width-cell */
+}
+
+.custom-table-header-cell.medium-width-cell,
+.custom-table-cell.medium-width-cell {
+  min-width: 280px; /* Ancho para columnas medianas (mismo que por defecto) */
+}
+
+.custom-table-header-cell.large-width-cell,
+.custom-table-cell.large-width-cell {
+  min-width: 400px; /* Ancho para columnas grandes */
+}
+
+/* Opciones dentro de la celda */
+.custom-table-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Contenedor de paginación */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  gap: 10px;
+  flex-wrap: wrap;
+  border-top: 1px solid #e5e7eb;
+  background-color: #f8fafc;
+}
+
+/* Botones de paginación */
+.btn-current-page,
+.btn-pagination {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e2e8f0;
+  color: #1e293b;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-current-page:hover,
+.btn-pagination:hover {
+  background-color: #cbd5e1;
+}
+
+.active-page {
+  background-color: #2563eb;
+  color: #fff;
+  font-weight: bold;
+}
+
+.btn-pagination:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.btn-pagination-left {
+  transform: rotate(180deg);
+}
+
+/* Filtro de búsqueda */
+.filter-container {
+  padding: 12px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.filter-input {
+  width: 100%;
+  max-width: 300px;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  background-color: #fff;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .custom-table-header,
+  .custom-table-body {
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .custom-table-header-cell,
+  .custom-table-cell {
+    min-width: 180px; /* Ancho mínimo por defecto para móviles */
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+
+  .custom-table-header-cell.very-small-width-cell,
+  .custom-table-cell.very-small-width-cell {
+    min-width: 80px; /* Ancho para columnas muy pequeñas en móviles */
+    text-align: center; /* Centrado para very-small-width-cell */
+  }
+
+  .custom-table-header-cell.small-width-cell,
+  .custom-table-cell.small-width-cell {
+    min-width: 120px; /* Ancho para columnas pequeñas en móviles */
+    text-align: center; /* Centrado para small-width-cell */
+  }
+
+  .custom-table-header-cell.medium-width-cell,
+  .custom-table-cell.medium-width-cell {
+    min-width: 180px; /* Ancho para columnas medianas en móviles */
+  }
+
+  .custom-table-header-cell.large-width-cell,
+  .custom-table-cell.large-width-cell {
+    min-width: 250px; /* Ancho para columnas grandes en móviles */
+  }
+
+  .filter-container {
+    justify-content: center;
+  }
+}
+
+/* Personalización del scrollbar */
+.custom-table-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-table-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-table-container::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 4px;
+}
+
+.custom-table-container::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8;
+}

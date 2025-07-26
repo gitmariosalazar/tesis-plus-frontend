@@ -1,19 +1,25 @@
-import './CustomTable.css';
+import './DataTable.css';
 import React, { ReactNode, useState } from 'react';
 import HeaderTable from './HeaderTable';
 import { MdFastForward, MdPlayArrow } from 'react-icons/md';
+import { BsFillTriangleFill } from 'react-icons/bs';
+import { FaInfo } from 'react-icons/fa';
+import { BsListColumnsReverse } from 'react-icons/bs';
+import { BsFillInfoCircleFill } from 'react-icons/bs';
 
 export interface Column<T> {
   header: string;
   value: string;
   sortable?: boolean;
   render?: (value: any, row: T) => ReactNode;
+  width?: Width; // Optional width for the column
 }
+
+export type Width = 'very-small-width-cell' | 'small-width-cell' | 'medium-width-cell' | 'large-width-cell';
 
 interface CustomTableProps<T> {
   data: T[];
   columns: Column<T>[];
-  rowsPerPage?: number;
   table_title: string;
   button?: ReactNode;
 }
@@ -25,10 +31,13 @@ function getValueFromPath(obj: any, path: string): any {
     .reduce((acc, part) => acc?.[part], obj);
 }
 
+
+
+
+
 const DataTable = <T extends object>({
   data,
   columns,
-  rowsPerPage = 16,
   table_title,
   button,
 }: CustomTableProps<T>) => {
@@ -39,6 +48,14 @@ const DataTable = <T extends object>({
   const [currentPage, setCurrentPage] = useState(1);
   const [pageBlock, setPageBlock] = useState(0);
   const pagesPerBlock = 6;
+
+  const [rowsPerPageValue, setRowsPerPageValue] = useState<number>(10);
+
+  const handleChangeRowsPerPage = (value: number | null) => {
+    if (value) {
+      setRowsPerPageValue(value);
+    }
+  };
 
   const applyFilter = (items: T[]) => {
     if (!filterText) return items;
@@ -51,7 +68,7 @@ const DataTable = <T extends object>({
   };
 
   const filteredData = applyFilter(sortedData);
-  const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+  const totalPages = Math.ceil(filteredData.length / rowsPerPageValue);
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
@@ -88,8 +105,8 @@ const DataTable = <T extends object>({
   };
 
   const paginatedData = filteredData.slice(
-    (currentPage - 1) * rowsPerPage,
-    currentPage * rowsPerPage
+    (currentPage - 1) * rowsPerPageValue,
+    currentPage * rowsPerPageValue
   );
   const startPage = pageBlock * pagesPerBlock + 1;
   const endPage = Math.min(startPage + pagesPerBlock - 1, totalPages);
@@ -108,6 +125,7 @@ const DataTable = <T extends object>({
     }
   };
 
+
   return (
     <div className="custom-table">
       <HeaderTable
@@ -115,40 +133,70 @@ const DataTable = <T extends object>({
         button={button}
         onSearch={handleFilterChange}
         onButtonClick={() => {}}
+        onChangePageNumber={handleChangeRowsPerPage}
       />
-      <div className="custom-table-header">
-        {columns.map((col) => (
-          <div
-            key={col.value}
-            className="custom-table-cell custom-table-header-cell"
-            onClick={() => col.sortable && sortData(col.value)}
-          >
-            {col.header}
-            {sortColumn === col.value &&
-              (sortDirection === 'asc' ? ' 🔼' : ' 🔽')}
-          </div>
-        ))}
-      </div>
-      <div className="custom-table-body">
-        {paginatedData.map((row, i) => (
-          <div
-            key={i}
-            className={
-              i % 2 === 0
-                ? 'custom-table-row row-one'
-                : 'custom-table-row row-two'
-            }
-          >
-            {columns.map((col) => {
-              const value = getValueFromPath(row, col.value);
-              return (
-                <div key={col.value} className="custom-table-cell">
-                  {col.render ? col.render(value, row) : value?.toString()}
+      <div className="custom-table-container">
+        <div className="custom-table-header">
+          {columns.map((col, index) => (
+            <div
+              key={index}
+              className={`custom-table-cell custom-table-header-cell ${col.width}`}
+              onClick={() => col.sortable && sortData(col.value)}
+            >
+              {col.header}
+              {sortColumn === col.value &&
+                (sortDirection === 'asc' ? ' 🔼' : ' 🔽')}
+            </div>
+          ))}
+        </div>
+        <div className="custom-table-body">
+          {paginatedData.length > 0 ? (
+            <>
+              {paginatedData.map((row, i) => (
+                <div
+                  key={i}
+                  className={
+                    i % 2 === 0
+                      ? 'custom-table-row row-one'
+                      : 'custom-table-row row-two'
+                  }
+                >
+                  {columns.map((col, index) => {
+                    const value = getValueFromPath(row, col.value);
+                    return (
+                      <div
+                        key={index}
+                        className={`custom-table-cell ${col.width}`}
+                      >
+                        {col.render
+                          ? col.render(value, row)
+                          : value?.toString()}
+                      </div>
+                    );
+                  })}
                 </div>
-              );
-            })}
-          </div>
-        ))}
+              ))}
+            </>
+          ) : (
+            <div className="no-records-found-container">
+              <div className="info-records">
+                <div className="icon-warning-records">
+                  <BsFillTriangleFill />
+                  <div className="icon-list">
+                    <BsListColumnsReverse />
+                    <FaInfo />
+                  </div>
+                </div>
+                <div className="records-messag">
+                  <span>
+                    <BsFillInfoCircleFill />
+                    <p>No Records Found</p>
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
       <div className="pagination-container">
         <button

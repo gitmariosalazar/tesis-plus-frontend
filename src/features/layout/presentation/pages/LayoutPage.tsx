@@ -27,7 +27,7 @@ const LayoutPage: React.FC = () => {
     switch (activePage) {
       case 'dashboard':
         return <DashboardPage />;
-      case 'process':
+      case 'viewProcess':
         return <ProcessTable />;
       case 'invoices':
         return <InvoiceTable />;

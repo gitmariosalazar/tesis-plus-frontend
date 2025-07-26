@@ -1,252 +1,344 @@
-export const processData = [
+import { ProcessResponse } from "@/domain/services/docs/process/dto/response/process.response";
+
+export const processData:ProcessResponse[] = [
   {
-    process_code: 'PC-R51RFR',
-    entity: 'Airmax Telecom S.A',
-    object_process: 'Network service',
-    date: '25-02-2023',
+    idProcess: 1,
+    processNumber: 'PROC001',
+    value: 1000,
+    category: 'Procurement',
+    description: 'Procurement process',
+    timeExecution: '30 days',
+    processObject: 'Purchase equipment',
+    emailManager: 'manager@acme.com',
+    fullNameManager: 'John Manager',
+    phoneManager: '1234567890',
+    statusProcess: 1,
+    isActive: true,
+    entity: {
+      idEntity: 1,
+      ruc: '1234567890001',
+      name: 'Acme Corp',
+      email: 'contact@acme.com',
+      cellphone: '1234567890',
+      telephone: '0987654321',
+      address: '123 Main St',
+      description: 'Tech company',
+    },
     status: {
-      code: 12,
-      name: 'Active'
-    }
+      idStatus: 1,
+      name: 'Active',
+      description: 'Process is active',
+      typeStatus: {
+        idTypeStatus: 1,
+        name: 'Process',
+        description: 'Status for processes',
+      },
+    },
   },
   {
-    process_code: 'PC-X72TGC',
-    entity: 'TechSol Ltd.',
-    object_process: 'Software Development',
-    date: '15-03-2023',
+    idProcess: 2,
+    processNumber: 'PROC002',
+    value: 2000,
+    category: 'Sales',
+    description: 'Sales process',
+    timeExecution: '15 days',
+    processObject: 'Sell products',
+    emailManager: 'manager@beta.com',
+    fullNameManager: 'Jane Manager',
+    phoneManager: '1234567891',
+    statusProcess: 1,
+    isActive: true,
+    entity: {
+      idEntity: 2,
+      ruc: '1234567890002',
+      name: 'Beta Inc',
+      email: 'info@beta.com',
+      cellphone: '1234567891',
+      telephone: '0987654322',
+      address: '456 Oak Ave',
+      description: 'Consulting firm',
+    },
     status: {
-      code: 13,
-      name: 'Selected'
-    }
+      idStatus: 1,
+      name: 'Active',
+      description: 'Process is active',
+      typeStatus: {
+        idTypeStatus: 1,
+        name: 'Process',
+        description: 'Status for processes',
+      },
+    },
   },
   {
-    process_code: 'PC-A51JXD',
-    entity: 'Global Ventures Inc.',
-    object_process: 'Consulting Services',
-    date: '10-01-2023',
+    idProcess: 3,
+    processNumber: 'PROC003',
+    value: 1500,
+    category: 'HR',
+    description: 'Hiring process',
+    timeExecution: '20 days',
+    processObject: 'Hire staff',
+    emailManager: 'manager@gamma.com',
+    fullNameManager: 'Alice Manager',
+    phoneManager: '1234567892',
+    statusProcess: 2,
+    isActive: false,
+    entity: {
+      idEntity: 3,
+      ruc: '1234567890003',
+      name: 'Gamma Ltd',
+      email: 'support@gamma.com',
+      cellphone: '1234567892',
+      telephone: '0987654323',
+      address: '789 Pine Rd',
+      description: 'Retail business',
+    },
     status: {
-      code: 14,
-      name: 'Closed'
-    }
+      idStatus: 2,
+      name: 'Inactive',
+      description: 'Process is inactive',
+      typeStatus: {
+        idTypeStatus: 1,
+        name: 'Process',
+        description: 'Status for processes',
+      },
+    },
   },
   {
-    process_code: 'PC-P98KLM',
-    entity: 'Airmax Telecom S.A',
-    object_process: 'Network Maintenance',
-    date: '20-12-2022',
+    idProcess: 4,
+    processNumber: 'PROC004',
+    value: 3000,
+    category: 'Finance',
+    description: 'Budget approval',
+    timeExecution: '10 days',
+    processObject: 'Approve budget',
+    emailManager: 'manager@delta.com',
+    fullNameManager: 'Bob Manager',
+    phoneManager: '1234567893',
+    statusProcess: 1,
+    isActive: true,
+    entity: {
+      idEntity: 4,
+      ruc: '1234567890004',
+      name: 'Delta Co',
+      email: 'hello@delta.com',
+      cellphone: '1234567893',
+      telephone: '0987654324',
+      address: '101 Maple St',
+      description: 'Manufacturing',
+    },
     status: {
-      code: 15,
-      name: 'Cancelled'
-    }
+      idStatus: 1,
+      name: 'Active',
+      description: 'Process is active',
+      typeStatus: {
+        idTypeStatus: 1,
+        name: 'Process',
+        description: 'Status for processes',
+      },
+    },
   },
   {
-    process_code: 'PC-T61UVW',
-    entity: 'Innovatech Solutions',
-    object_process: 'Cloud Services',
-    date: '05-11-2023',
+    idProcess: 5,
+    processNumber: 'PROC005',
+    value: 2500,
+    category: 'IT',
+    description: 'System upgrade',
+    timeExecution: '25 days',
+    processObject: 'Upgrade servers',
+    emailManager: 'manager@epsilon.com',
+    fullNameManager: 'Emma Manager',
+    phoneManager: '1234567894',
+    statusProcess: 1,
+    isActive: true,
+    entity: {
+      idEntity: 5,
+      ruc: '1234567890005',
+      name: 'Epsilon LLC',
+      email: 'contact@epsilon.com',
+      cellphone: '1234567894',
+      telephone: '0987654325',
+      address: '202 Birch Ave',
+      description: 'Logistics',
+    },
     status: {
-      code: 16,
-      name: 'Inactive'
-    }
+      idStatus: 1,
+      name: 'Active',
+      description: 'Process is active',
+      typeStatus: {
+        idTypeStatus: 1,
+        name: 'Process',
+        description: 'Status for processes',
+      },
+    },
   },
   {
-    process_code: 'PC-Y83QWE',
-    entity: 'FastTrack Logistics',
-    object_process: 'Transportation Services',
-    date: '12-10-2023',
+    idProcess: 6,
+    processNumber: 'PROC006',
+    value: 1800,
+    category: 'Marketing',
+    description: 'Campaign launch',
+    timeExecution: '14 days',
+    processObject: 'Launch ad campaign',
+    emailManager: 'manager@zeta.com',
+    fullNameManager: 'David Manager',
+    phoneManager: '1234567895',
+    statusProcess: 1,
+    isActive: true,
+    entity: {
+      idEntity: 6,
+      ruc: '1234567890006',
+      name: 'Zeta Solutions',
+      email: 'info@zeta.com',
+      cellphone: '1234567895',
+      telephone: '0987654326',
+      address: '303 Cedar Rd',
+      description: 'Software development',
+    },
     status: {
-      code: 17,
-      name: 'Expired'
-    }
+      idStatus: 1,
+      name: 'Active',
+      description: 'Process is active',
+      typeStatus: {
+        idTypeStatus: 1,
+        name: 'Process',
+        description: 'Status for processes',
+      },
+    },
   },
   {
-    process_code: 'PC-B76NXR',
-    entity: 'TechSol Ltd.',
-    object_process: 'Data Migration',
-    date: '01-09-2023',
+    idProcess: 7,
+    processNumber: 'PROC007',
+    value: 2200,
+    category: 'Operations',
+    description: 'Process optimization',
+    timeExecution: '18 days',
+    processObject: 'Optimize workflow',
+    emailManager: 'manager@eta.com',
+    fullNameManager: 'Sarah Manager',
+    phoneManager: '1234567896',
+    statusProcess: 2,
+    isActive: false,
+    entity: {
+      idEntity: 7,
+      ruc: '1234567890007',
+      name: 'Eta Enterprises',
+      email: 'support@eta.com',
+      cellphone: '1234567896',
+      telephone: '0987654327',
+      address: '404 Elm St',
+      description: 'Financial services',
+    },
     status: {
-      code: 12,
-      name: 'Active'
-    }
+      idStatus: 2,
+      name: 'Inactive',
+      description: 'Process is inactive',
+      typeStatus: {
+        idTypeStatus: 1,
+        name: 'Process',
+        description: 'Status for processes',
+      },
+    },
   },
   {
-    process_code: 'PC-M24JKL',
-    entity: 'NextGen Systems',
-    object_process: 'Hardware Procurement',
-    date: '08-08-2023',
+    idProcess: 8,
+    processNumber: 'PROC008',
+    value: 1700,
+    category: 'Logistics',
+    description: 'Supply chain',
+    timeExecution: '22 days',
+    processObject: 'Manage supply',
+    emailManager: 'manager@theta.com',
+    fullNameManager: 'Michael Manager',
+    phoneManager: '1234567897',
+    statusProcess: 1,
+    isActive: true,
+    entity: {
+      idEntity: 8,
+      ruc: '1234567890008',
+      name: 'Theta Group',
+      email: 'contact@theta.com',
+      cellphone: '1234567897',
+      telephone: '0987654328',
+      address: '505 Spruce Ave',
+      description: 'Marketing agency',
+    },
     status: {
-      code: 13,
-      name: 'Selected'
-    }
+      idStatus: 1,
+      name: 'Active',
+      description: 'Process is active',
+      typeStatus: {
+        idTypeStatus: 1,
+        name: 'Process',
+        description: 'Status for processes',
+      },
+    },
   },
   {
-    process_code: 'PC-Z19VBN',
-    entity: 'Airmax Telecom S.A',
-    object_process: 'Technical Support',
-    date: '14-07-2023',
+    idProcess: 9,
+    processNumber: 'PROC009',
+    value: 1900,
+    category: 'R&D',
+    description: 'Product development',
+    timeExecution: '30 days',
+    processObject: 'Develop new product',
+    emailManager: 'manager@iota.com',
+    fullNameManager: 'Laura Manager',
+    phoneManager: '1234567898',
+    statusProcess: 1,
+    isActive: true,
+    entity: {
+      idEntity: 9,
+      ruc: '1234567890009',
+      name: 'Iota Industries',
+      email: 'info@iota.com',
+      cellphone: '1234567898',
+      telephone: '0987654329',
+      address: '606 Walnut Rd',
+      description: 'Construction',
+    },
     status: {
-      code: 14,
-      name: 'Closed'
-    }
+      idStatus: 1,
+      name: 'Active',
+      description: 'Process is active',
+      typeStatus: {
+        idTypeStatus: 1,
+        name: 'Process',
+        description: 'Status for processes',
+      },
+    },
   },
   {
-    process_code: 'PC-D45PLQ',
-    entity: 'Global Ventures Inc.',
-    object_process: 'Training Services',
-    date: '03-06-2023',
+    idProcess: 10,
+    processNumber: 'PROC010',
+    value: 2100,
+    category: 'Compliance',
+    description: 'Audit process',
+    timeExecution: '12 days',
+    processObject: 'Conduct audit',
+    emailManager: 'manager@kappa.com',
+    fullNameManager: 'Chris Manager',
+    phoneManager: '1234567899',
+    statusProcess: 1,
+    isActive: true,
+    entity: {
+      idEntity: 10,
+      ruc: '1234567890010',
+      name: 'Kappa Corp',
+      email: 'support@kappa.com',
+      cellphone: '1234567899',
+      telephone: '0987654330',
+      address: '707 Chestnut St',
+      description: 'Healthcare',
+    },
     status: {
-      code: 15,
-      name: 'Cancelled'
-    }
+      idStatus: 1,
+      name: 'Active',
+      description: 'Process is active',
+      typeStatus: {
+        idTypeStatus: 1,
+        name: 'Process',
+        description: 'Status for processes',
+      },
+    },
   },
-  {
-    process_code: 'PC-G23KLM',
-    entity: 'Innovatech Solutions',
-    object_process: 'Cybersecurity Services',
-    date: '28-05-2023',
-    status: {
-      code: 16,
-      name: 'Inactive'
-    }
-  },
-  {
-    process_code: 'PC-H11OPQ',
-    entity: 'TechSol Ltd.',
-    object_process: 'AI Development',
-    date: '22-04-2023',
-    status: {
-      code: 17,
-      name: 'Expired'
-    }
-  },
-  {
-    process_code: 'PC-K02LWX',
-    entity: 'Airmax Telecom S.A',
-    object_process: 'Telecommunication Infrastructure',
-    date: '18-03-2023',
-    status: {
-      code: 12,
-      name: 'Active'
-    }
-  },
-  {
-    process_code: 'PC-Q88RST',
-    entity: 'FastTrack Logistics',
-    object_process: 'Fleet Management',
-    date: '11-02-2023',
-    status: {
-      code: 13,
-      name: 'Selected'
-    }
-  },
-  {
-    process_code: 'PC-L65VNC',
-    entity: 'NextGen Systems',
-    object_process: 'IT Outsourcing',
-    date: '05-01-2023',
-    status: {
-      code: 14,
-      name: 'Closed'
-    }
-  },
-  {
-    process_code: 'PC-R92POI',
-    entity: 'TechSol Ltd.',
-    object_process: 'Mobile App Development',
-    date: '30-12-2022',
-    status: {
-      code: 15,
-      name: 'Cancelled'
-    }
-  },
-  {
-    process_code: 'PC-E43PLM',
-    entity: 'Global Ventures Inc.',
-    object_process: 'Financial Consulting',
-    date: '21-11-2022',
-    status: {
-      code: 16,
-      name: 'Inactive'
-    }
-  },
-  {
-    process_code: 'PC-F77YTR',
-    entity: 'Innovatech Solutions',
-    object_process: 'DevOps Services',
-    date: '12-10-2022',
-    status: {
-      code: 17,
-      name: 'Expired'
-    }
-  },
-  {
-    process_code: 'PC-P09LKM',
-    entity: 'Airmax Telecom S.A',
-    object_process: 'Equipment Leasing',
-    date: '09-09-2022',
-    status: {
-      code: 12,
-      name: 'Active'
-    }
-  },
-  {
-    process_code: 'PC-T88WVN',
-    entity: 'FastTrack Logistics',
-    object_process: 'Warehousing Services',
-    date: '04-08-2022',
-    status: {
-      code: 13,
-      name: 'Selected'
-    }
-  },
-  {
-    process_code: 'PC-M33NVC',
-    entity: 'NextGen Systems',
-    object_process: 'Tech Support',
-    date: '27-07-2022',
-    status: {
-      code: 14,
-      name: 'Closed'
-    }
-  },
-  {
-    process_code: 'PC-Z10PQX',
-    entity: 'TechSol Ltd.',
-    object_process: 'Data Science Solutions',
-    date: '16-06-2022',
-    status: {
-      code: 15,
-      name: 'Cancelled'
-    }
-  },
-  {
-    process_code: 'PC-H09KLV',
-    entity: 'Global Ventures Inc.',
-    object_process: 'Project Management',
-    date: '02-05-2022',
-    status: {
-      code: 16,
-      name: 'Inactive'
-    }
-  },
-  {
-    process_code: 'PC-K19LPW',
-    entity: 'Innovatech Solutions',
-    object_process: 'UX/UI Design',
-    date: '18-04-2022',
-    status: {
-      code: 17,
-      name: 'Expired'
-    }
-  },
-  {
-    process_code: 'PC-Q99RST',
-    entity: 'Airmax Telecom S.A',
-    object_process: 'Broadband Expansion',
-    date: '01-03-2022',
-    status: {
-      code: 12,
-      name: 'Active'
-    }
-  }
 ];

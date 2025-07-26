@@ -7,6 +7,8 @@ import { SiGoogledocs } from 'react-icons/si';
 
 import './NotificationContentDrawer.css';
 import { notificationsData } from '@/shared/api/data/notifications';
+import getTimeAgo from '@/shared/utils/get-time';
+import { NotificationResponse } from '@/domain/services/messages/notifications/dto/response/notification.response';
 
 export interface Notification {
   id_notifications: number;
@@ -27,28 +29,28 @@ export interface Notification {
 }
 
 const NotificationContentDrawer = () => {
-  const notifications: Notification[] = notificationsData;
+  const notifications: NotificationResponse[] = notificationsData;
 
   return (
     <div className="notification-content-drawer">
       {notifications.map((notification) => (
-        <div key={notification.id_notifications} className="notification-item">
+        <div key={notification.idNotifications} className="notification-item">
           <div className="time-notification">
             <span className="time-icon">
               <PiClockCountdownFill />
-              <p>{notification.created_at}</p>
+              <p>{getTimeAgo(notification.createdAt!)}</p>
             </span>
           </div>
           <div className="notification-content-body">
             <div className="notification-logo">
               <span>
-                {notification.notification_type === 1 ? (
+                {notification.typeNotification.idTypeNotification === 1 ? (
                   <PiClockCountdownFill />
-                ) : notification.notification_type === 2 ? (
+                ) : notification.typeNotification.idTypeNotification === 2 ? (
                   <BiSolidMessageDetail />
-                ) : notification.notification_type === 3 ? (
+                ) : notification.typeNotification.idTypeNotification === 3 ? (
                   <FaFileInvoice />
-                ) : notification.notification_type === 4 ? (
+                ) : notification.typeNotification.idTypeNotification === 4 ? (
                   <SiGoogledocs />
                 ) : (
                   <FaChartPie />
@@ -57,10 +59,10 @@ const NotificationContentDrawer = () => {
             </div>
             <div className="notification-content">
               <p className="notification-title">
-                {notification.details.subject}
+                {notification.subject}
               </p>
               <p className="notification-description">
-                {notification.details.message}
+                {notification.message}
               </p>
             </div>
           </div>

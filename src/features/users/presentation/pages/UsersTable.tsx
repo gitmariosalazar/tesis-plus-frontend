@@ -2,7 +2,7 @@ import { UserResponse } from '@/domain/services/security/users/dto/response/user
 import OptionsProcess from '@/features/process/presentation/components/Options';
 import { users } from '@/shared/api/data/users';
 import { CustomButton } from '@/shared/components/button/Button';
-import DataTable from '@/shared/components/table/DataTable';
+import DataTable, { Column } from '@/shared/components/table/DataTable';
 import React from 'react';
 import {
   MdDeleteForever,
@@ -47,11 +47,26 @@ const UsersTable = () => {
 
   const usersData: UserResponse[] = users;
 
-  const columns = [
-    //{ header: 'ID', value: 'idUser', sortable: true },
-    { header: 'Email', value: 'userEmail', sortable: true },
-    { header: 'First Name', value: 'firstName', sortable: true },
-    { header: 'Last Name', value: 'lastName', sortable: true },
+  const columns: Column<UserResponse>[] = [
+    { header: 'ID', value: 'idUser', sortable: true },
+    {
+      header: 'Email',
+      value: 'userEmail',
+      sortable: true,
+      width: 'medium-width-cell',
+    },
+    {
+      header: 'First Name',
+      value: 'firstName',
+      sortable: true,
+      width: 'very-small-width-cell',
+    },
+    {
+      header: 'Last Name',
+      value: 'lastName',
+      sortable: true,
+      width: 'very-small-width-cell',
+    },
     {
       header: 'Active',
       value: 'userActive',
@@ -64,8 +79,14 @@ const UsersTable = () => {
           onClick={handleOpenDeleteModal}
         />
       ),
+      width: 'very-small-width-cell',
     },
-    { header: 'User Type ID', value: 'userType.name', sortable: true },
+    {
+      header: 'User Type ID',
+      value: 'userType.name',
+      sortable: true,
+      width: 'very-small-width-cell',
+    },
     {
       header: 'Options',
       value: 'options' as keyof UserResponse,
@@ -104,6 +125,7 @@ const UsersTable = () => {
           </div>
         </div>
       ),
+      width: 'small-width-cell',
     },
   ];
 

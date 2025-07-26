@@ -15,6 +15,8 @@ import OptionsProcess from '../components/Options';
 import ProcessView from '../components/ProcessView';
 import DataTable, { Column } from '@/shared/components/table/DataTable';
 import { processData } from '@/shared/api/data/process';
+import { ProcessResponse } from '@/domain/services/docs/process/dto/response/process.response';
+import { StatusResponse } from '@/domain/services/docs/status/dto/response/status.response';
 
 export const ProcessTable = () => {
   const [openEditModal, setOpenEditModal] = useState(false);
@@ -47,35 +49,27 @@ export const ProcessTable = () => {
     setOpenEditModal(false);
   };
 
-  interface Process {
-    process_code: string;
-    entity: string;
-    object_process: string;
-    date: string;
-    status: {
-      code: number;
-      name: string;
-    };
-  }
 
-  const invoices: Process[] = processData;
 
-  const columns: Column<Process>[] = [
-    { header: 'Process Code', value: 'process_code', sortable: true },
-    { header: 'Entity Name', value: 'entity', sortable: true },
-    { header: 'Entity', value: 'entity', sortable: true },
-    { header: 'Process Object', value: 'object_process', sortable: true },
-    { header: 'Date', value: 'date', sortable: true },
+  const processList: ProcessResponse[] = processData;
+
+  const columns: Column<ProcessResponse>[] = [
+    { header: 'Process Code', value: 'processNumber', sortable: true, width: 'small-width-cell' },
+    { header: 'Entity Name', value: 'entity.name', sortable: true, width: 'medium-width-cell' },
+    { header: 'Manager', value: 'fullNameManager', sortable: true, width: 'medium-width-cell' },
+    { header: 'Process Object', value: 'processObject', sortable: true, width: 'medium-width-cell' },
+    { header: 'Category', value: 'category', sortable: true, width: 'medium-width-cell' },
     {
       header: 'Status',
       value: 'status',
-      render: (value: { code: number; name: string }) => (
-        <StatusBadge code={value.code} label={value.name} />
+      render: (status: StatusResponse) => (
+        <StatusBadge code={status.idStatus} label={status.name} />
       ),
+      width: 'small-width-cell'
     },
     {
       header: 'Options',
-      value: 'options' as keyof Process,
+      value: 'options' as keyof ProcessResponse,
       render: () => (
         <div className="custom-table-options">
           <div className="table-options">
@@ -111,14 +105,15 @@ export const ProcessTable = () => {
           </div>
         </div>
       ),
+      width: 'small-width-cell'
     },
   ];
 
   return (
     <div className="process">
       <div className="header-table-ant">
-        <DataTable<Process>
-          data={processData}
+        <DataTable<ProcessResponse>
+          data={processList}
           columns={columns}
           table_title="Process reviews Management"
           button={

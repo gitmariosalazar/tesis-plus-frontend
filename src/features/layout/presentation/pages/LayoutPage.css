@@ -5,12 +5,13 @@
     'aside main'
     'footer footer';
   grid-template-columns: 257px 1fr;
-  grid-template-rows: 50px 1fr 40px; /* Header, Main, Footer */
+  grid-template-rows: 50px 1fr 40px;
   height: 98.5vh;
   overflow: hidden;
   transition: grid-template-columns 0.3s ease;
 }
 
+/* Aside colapsado: solo íconos */
 .layout-page.collapsed {
   grid-template-columns: 82px 1fr;
 }
@@ -19,6 +20,8 @@
   grid-area: aside;
   overflow-y: hidden;
   transition: width 0.3s ease;
+  background-color: #f7f9fc;
+  border-right: 1px solid #ccc;
 }
 
 .header-page {
@@ -46,14 +49,17 @@
   justify-content: center;
 }
 
+/* Contenedor principal del contenido (scrollable) */
 .content {
-  background-color: white;
+  background-color: #ffffff;
   padding: 10px;
   border-radius: 8px;
   height: 97.7%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
 }
 
+/* Header: caja de acciones */
 .header-page-box {
   display: flex;
   justify-content: flex-end;
@@ -102,22 +108,22 @@
 }
 
 .header-page-icons:hover {
-  color: rgb(255, 255, 255);
+  color: #ffffff;
 }
-
-/* Responsive: oculta el aside en móviles */
+/* Responsive: colapsa aside en móvil, pero no lo oculta */
 @media (max-width: 768px) {
   .layout-page,
   .layout-page.collapsed {
     grid-template-areas:
-      'header'
-      'main'
-      'footer';
-    grid-template-columns: 1fr;
+      'aside header'
+      'aside main'
+      'aside footer';
+    grid-template-columns: 82px 1fr; /* aside fijo a la izquierda */
     grid-template-rows: 50px 1fr 40px;
   }
 
   .aside-layout {
-    display: none;
+    width: 82px !important;
   }
 }
+
