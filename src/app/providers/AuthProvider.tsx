@@ -15,6 +15,8 @@ import { SessionResponse } from '@/domain/services/security/authentication/dto/r
 import ExpiredSession from '@/shared/components/expired-session/ExpiredSession';
 import { useRefreshToken } from '@/features/auth/application/hooks/useRefreshToken';
 import { useLogout } from '@/features/auth/application/hooks/useLogout';
+import { CurrentUserService } from '@/features/auth/application/services/CurrentUserService';
+import { SessionUserService } from '@/features/auth/application/services/SessionUserService';
 
 interface AuthContextType {
   user: CurrentUserResponse | null;
@@ -45,6 +47,8 @@ const AuthContext = createContext<AuthContextType>({
 });
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const currentUserService: CurrentUserService = new CurrentUserService();
+  const sessionUserService: SessionUserService = new SessionUserService();
   const [user, setUser] = useState<CurrentUserResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -73,29 +77,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const initialCheckDoneRefreshToken = useRef(false);
   const intervalStartedRefreshToken = useRef(false);
 
-  // Definir rutas públicas donde no se debe mostrar el modal
-  const publicRoutes = ['/login', '/register', '/public', '/']; // Ajusta según tus rutas públicas
+  const publicRoutes = ['/login', '/register', '/public', '/'];
 
-  // Derivar sessionStatus para controlar el modal
   const sessionStatus = (() => {
     if (expiredToken === 'disabled' && expiredRefreshToken === 'disabled') {
-      return 'disabled'; // Modal cerrado
+      return 'disabled';
     } else if (
       expiredToken === 'expired' &&
       expiredRefreshToken === 'disabled'
     ) {
-      return 'expired'; // Modal con "Refresh" y "Exit"
+      return 'expired';
     } else {
-      return 'refreshFailed'; // Modal con solo "Exit"
+      return 'refreshFailed';
     }
   })();
 
   const checkAuthentication = async () => {
     try {
-      const session =
-        await apiClient.get<ApiResponse<SessionResponse>>('/auth/session');
-      if (session.data?.data) {
-        const sessionData = session.data.data;
+      const session = await sessionUserService.getSessionUser();
+      if (session.data) {
+        const sessionData = session.data;
 
         if (sessionData.accessTokenValid && sessionData.refreshTokenValid) {
           const timeLeftAccessToken =
@@ -113,12 +114,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           setTimeLifeRefreshToken(timeLeftRefreshToken);
           setExpiredToken('disabled');
           setExpiredRefreshToken('disabled');
-          const response =
-            await apiClient.get<ApiResponse<CurrentUserResponse>>(
-              '/auth/current-user'
-            );
-          if (response.data?.data) {
-            setUser(response.data.data);
+          const response = await currentUserService.getCurrentUser();
+          if (response.data) {
+            setUser(response.data);
             setIsAuthenticated(true);
           } else {
             setUser(null);
@@ -144,13 +142,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(null);
       setIsAuthenticated(false);
       setExpiredToken('disabled');
-      setExpiredRefreshToken('disabled'); // No mostrar modal si no está autenticado
+      setExpiredRefreshToken('disabled');
     } finally {
       setLoading(false);
     }
   };
 
-  // Realiza el check una sola vez al iniciar
   useEffect(() => {
     if (!initialCheckDoneAccessToken.current) {
       checkAuthentication();
@@ -294,7 +291,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const isPublicRoute = publicRoutes.includes(location.pathname);
 
-  // Verificar la sesión cuando la pestaña vuelve a estar activa
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (
@@ -310,7 +306,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, [location.pathname]);
 
-  // Registrar el interceptor para errores 401
   useEffect(() => {
     apiClient.setUnauthorizedHandler(async (error) => {
       if (!publicRoutes.includes(location.pathname) && isAuthenticated) {

@@ -6,7 +6,7 @@ import { InputNumber } from 'antd';
 
 interface Props {
   title: string;
-  button?: ReactNode;
+  component?: ReactNode;
   classname?: string;
   onSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onButtonClick: () => void;
@@ -15,11 +15,11 @@ interface Props {
 
 const HeaderTable: React.FC<Props> = ({
   title,
-  button,
+  component: component,
   classname = '',
   onSearch,
   onButtonClick,
-  onChangePageNumber
+  onChangePageNumber,
 }) => {
   const [searchValue, setSearchValue] = React.useState('');
 
@@ -55,7 +55,7 @@ const HeaderTable: React.FC<Props> = ({
               <SearchButton onChange={handleSearchChange} />
             </div>
           </div>
-          {button}
+          {component}
         </div>
       </div>
     </div>

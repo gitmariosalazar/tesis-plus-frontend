@@ -2,12 +2,9 @@ import { apiClient } from '@/infrastructure/api/client/apiClient';
 import { AuthCredentials } from '../../domain/types/AuthCredentials';
 import { AuthSignInResponse } from '../../../../domain/services/security/authentication/dto/response/AuthSignInResponse';
 import { ApiResponse } from '@/shared/api/response/ApiResponse';
+import { IAuthSecurityRepository } from '../interfaces/security.interface.repository';
 
-export interface AuthRepository {
-  login(credentials: AuthCredentials): Promise<ApiResponse<AuthSignInResponse>>;
-}
-
-export const authRepository: AuthRepository = {
+export const authRepository: IAuthSecurityRepository = {
   async login(
     credentials: AuthCredentials
   ): Promise<ApiResponse<AuthSignInResponse>> {

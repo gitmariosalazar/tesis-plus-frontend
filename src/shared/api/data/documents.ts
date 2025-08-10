@@ -1,6 +1,6 @@
-import { DocumentsResponse } from "@/domain/services/docs/documents/dto/response/documents.response";
+import { DocumentsResponse } from '@/domain/services/docs/documents/dto/response/documents.response';
 
-export const documentsData:DocumentsResponse[] = [
+export const documentsData: DocumentsResponse[] = [
   {
     idDocument: 1,
     name: 'Invoice 001',

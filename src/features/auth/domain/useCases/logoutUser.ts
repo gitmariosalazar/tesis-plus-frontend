@@ -1,9 +1,11 @@
-import { logoutRepository } from '@/features/auth/data/repositories/LogoutRepository';
 import { ApiResponse } from '@/shared/api/response/ApiResponse';
+import { ILogoutSecurityRepository } from '../../data/interfaces/security.interface.repository';
 
-export const logoutUserUseCase = async (): Promise<ApiResponse<any>> => {
+export const logoutUserUseCase = async (
+  repository: ILogoutSecurityRepository
+): Promise<ApiResponse<any>> => {
   try {
-    const response = await logoutRepository.logout();
+    const response = await repository.logout();
     return response;
   } catch (error: any) {
     throw error;

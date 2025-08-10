@@ -122,6 +122,7 @@ const MenuLayout: React.FC<MenuLayoutProps> = ({
       </div>
 
       <Menu
+        className="menu-aside"
         mode="inline"
         inlineCollapsed={finalCollapsed}
         defaultSelectedKeys={['dashboard']}

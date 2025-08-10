@@ -6,6 +6,7 @@ import { BsFillTriangleFill } from 'react-icons/bs';
 import { FaInfo } from 'react-icons/fa';
 import { BsListColumnsReverse } from 'react-icons/bs';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
+import NoRecordsFound from '../not-found/presentation/pages/NoRecordsFound';
 
 export interface Column<T> {
   header: string;
@@ -15,13 +16,17 @@ export interface Column<T> {
   width?: Width; // Optional width for the column
 }
 
-export type Width = 'very-small-width-cell' | 'small-width-cell' | 'medium-width-cell' | 'large-width-cell';
+export type Width =
+  | 'very-small-width-cell'
+  | 'small-width-cell'
+  | 'medium-width-cell'
+  | 'large-width-cell';
 
 interface CustomTableProps<T> {
   data: T[];
   columns: Column<T>[];
   table_title: string;
-  button?: ReactNode;
+  component?: ReactNode;
 }
 
 function getValueFromPath(obj: any, path: string): any {
@@ -31,15 +36,11 @@ function getValueFromPath(obj: any, path: string): any {
     .reduce((acc, part) => acc?.[part], obj);
 }
 
-
-
-
-
 const DataTable = <T extends object>({
   data,
   columns,
   table_title,
-  button,
+  component: component,
 }: CustomTableProps<T>) => {
   const [sortedData, setSortedData] = useState(data);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
@@ -125,12 +126,11 @@ const DataTable = <T extends object>({
     }
   };
 
-
   return (
     <div className="custom-table">
       <HeaderTable
         title={table_title}
-        button={button}
+        component={component}
         onSearch={handleFilterChange}
         onButtonClick={() => {}}
         onChangePageNumber={handleChangeRowsPerPage}
@@ -178,23 +178,7 @@ const DataTable = <T extends object>({
               ))}
             </>
           ) : (
-            <div className="no-records-found-container">
-              <div className="info-records">
-                <div className="icon-warning-records">
-                  <BsFillTriangleFill />
-                  <div className="icon-list">
-                    <BsListColumnsReverse />
-                    <FaInfo />
-                  </div>
-                </div>
-                <div className="records-messag">
-                  <span>
-                    <BsFillInfoCircleFill />
-                    <p>No Records Found</p>
-                  </span>
-                </div>
-              </div>
-            </div>
+            <NoRecordsFound />
           )}
         </div>
       </div>
@@ -232,7 +216,11 @@ const DataTable = <T extends object>({
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="btn-pagination btn-pagination-right"
+          className={
+            data.length === 0
+              ? 'btn-pagination-empty btn-pagination btn-pagination-right'
+              : 'btn-pagination btn-pagination-right'
+          }
         >
           <MdPlayArrow style={{ width: 25, height: 25 }} />
         </button>

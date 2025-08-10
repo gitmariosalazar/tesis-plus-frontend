@@ -30,7 +30,7 @@ const CustomTable: React.FC<CustomTableProps> = ({
   const [currentPage, setCurrentPage] = useState(1);
   const [pageBlock, setPageBlock] = useState(0);
   const [rowsPerPageValue, setRowsPerPageValue] = useState<number>(10);
-  
+
   const handleChangeRowsPerPage = (value: number | null) => {
     if (value) {
       setRowsPerPageValue(value);
@@ -110,9 +110,9 @@ const CustomTable: React.FC<CustomTableProps> = ({
     <div className="custom-table">
       <HeaderTable
         title={table_title}
-        button={button}
+        component={button}
         onSearch={handleFilterChange}
-        onButtonClick={() => { }}
+        onButtonClick={() => {}}
         onChangePageNumber={handleChangeRowsPerPage}
       />
       <div className="custom-table-header">

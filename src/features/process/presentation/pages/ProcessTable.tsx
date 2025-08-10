@@ -1,4 +1,4 @@
-import { MdOutlineAddTask } from 'react-icons/md';
+import { MdOutlineAddTask, MdRefresh } from 'react-icons/md';
 import { CustomButton } from '../../../../shared/components/button/Button';
 import StatusBadge from '../../../../shared/components/status/StatusBadge';
 import '../../../../styles/Table.css';
@@ -49,23 +49,46 @@ export const ProcessTable = () => {
     setOpenEditModal(false);
   };
 
-
-
   const processList: ProcessResponse[] = processData;
 
   const columns: Column<ProcessResponse>[] = [
-    { header: 'Process Code', value: 'processNumber', sortable: true, width: 'small-width-cell' },
-    { header: 'Entity Name', value: 'entity.name', sortable: true, width: 'medium-width-cell' },
-    { header: 'Manager', value: 'fullNameManager', sortable: true, width: 'medium-width-cell' },
-    { header: 'Process Object', value: 'processObject', sortable: true, width: 'medium-width-cell' },
-    { header: 'Category', value: 'category', sortable: true, width: 'medium-width-cell' },
+    {
+      header: 'Process Code',
+      value: 'processNumber',
+      sortable: true,
+      width: 'small-width-cell',
+    },
+    {
+      header: 'Entity Name',
+      value: 'entity.name',
+      sortable: true,
+      width: 'medium-width-cell',
+    },
+    {
+      header: 'Manager',
+      value: 'fullNameManager',
+      sortable: true,
+      width: 'medium-width-cell',
+    },
+    {
+      header: 'Process Object',
+      value: 'processObject',
+      sortable: true,
+      width: 'medium-width-cell',
+    },
+    {
+      header: 'Category',
+      value: 'category',
+      sortable: true,
+      width: 'medium-width-cell',
+    },
     {
       header: 'Status',
       value: 'status',
       render: (status: StatusResponse) => (
         <StatusBadge code={status.idStatus} label={status.name} />
       ),
-      width: 'small-width-cell'
+      width: 'small-width-cell',
     },
     {
       header: 'Options',
@@ -105,7 +128,7 @@ export const ProcessTable = () => {
           </div>
         </div>
       ),
-      width: 'small-width-cell'
+      width: 'small-width-cell',
     },
   ];
 
@@ -116,13 +139,22 @@ export const ProcessTable = () => {
           data={processList}
           columns={columns}
           table_title="Process reviews Management"
-          button={
-            <CustomButton
-              variant="solid"
-              color="green"
-              title="Add Process"
-              icon={MdOutlineAddTask}
-            />
+          component={
+            <>
+              <CustomButton
+                variant="solid"
+                color="green"
+                title="Add Process"
+                icon={MdOutlineAddTask}
+              />
+              <CustomButton
+                tooltip="Refresh"
+                variant="solid"
+                color="blue"
+                title=""
+                icon={MdRefresh}
+              />
+            </>
           }
         />
 

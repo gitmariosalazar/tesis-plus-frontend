@@ -6,7 +6,9 @@ import { FaFileInvoice } from 'react-icons/fa';
 import {
   MdDeleteForever,
   MdEditSquare,
+  MdOutlineAddTask,
   MdOutlinePreview,
+  MdRefresh,
 } from 'react-icons/md';
 import DocumentsEditForm from '../components/DocumentsEditForm';
 import DeleteDocumentsConfirm from '../components/DocumentsDeleteConfirm';
@@ -157,14 +159,22 @@ const DocumentsPage = () => {
           data={documents}
           columns={columns}
           table_title="Document Management"
-          button={
-            <CustomButton
-              variant="solid"
-              color="green"
-              title="Add Document"
-              icon={MdEditSquare}
-              onClick={handleOpenEditModal}
-            />
+          component={
+            <>
+              <CustomButton
+                variant="solid"
+                color="green"
+                title="Add Document"
+                icon={MdOutlineAddTask}
+              />
+              <CustomButton
+                tooltip="Refresh"
+                variant="solid"
+                color="blue"
+                title=""
+                icon={MdRefresh}
+              />
+            </>
           }
         />
       </div>

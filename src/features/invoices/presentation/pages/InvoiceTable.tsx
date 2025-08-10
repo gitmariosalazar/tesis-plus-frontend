@@ -1,4 +1,4 @@
-import { MdOutlineAddTask } from 'react-icons/md';
+import { MdOutlineAddTask, MdRefresh } from 'react-icons/md';
 import { CustomButton } from '../../../../shared/components/button/Button';
 import StatusBadge from '../../../../shared/components/status/StatusBadge';
 import { invoiceData } from '@/shared/api/data/invoice';
@@ -204,13 +204,22 @@ export const InvoiceTable = () => {
           data={invoiceList}
           columns={columns}
           table_title="Invoice reviews Management"
-          button={
-            <CustomButton
-              variant="solid"
-              color="green"
-              title="Add Invoice"
-              icon={MdOutlineAddTask}
-            ></CustomButton>
+          component={
+            <>
+              <CustomButton
+                variant="solid"
+                color="green"
+                title="Add Invoice"
+                icon={MdOutlineAddTask}
+              />
+              <CustomButton
+                tooltip="Refresh"
+                variant="solid"
+                color="blue"
+                title=""
+                icon={MdRefresh}
+              />
+            </>
           }
         />
         <InvoiceEditForm

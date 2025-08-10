@@ -2,14 +2,14 @@ import { notificationsData } from '@/shared/api/data/notifications';
 import { CustomButton } from '@/shared/components/button/Button';
 import DataTable, { Column } from '@/shared/components/table/DataTable';
 import React from 'react';
-import './NotificationTable.css'
-
+import './NotificationTable.css';
 
 import {
   MdDeleteForever,
   MdEditSquare,
   MdOutlineAddTask,
   MdOutlinePreview,
+  MdRefresh,
 } from 'react-icons/md';
 import StatusBadge from '@/shared/components/status/StatusBadge';
 import { NotificationResponse } from '@/domain/services/messages/notifications/dto/response/notification.response';
@@ -19,14 +19,6 @@ const NotificationTable = () => {
   const notificationsList: NotificationResponse[] = notificationsData;
   const columns: Column<NotificationResponse>[] = [
     {
-      header: 'ID',
-      value: 'idNotifications',
-      sortable: true,
-      render: (value: string) => (
-        <span className="id-notification">{value}</span>
-      ),
-    },
-    {
       header: 'Email',
       value: 'email',
       sortable: true,
@@ -35,7 +27,7 @@ const NotificationTable = () => {
       header: 'Phone',
       value: 'phone',
       sortable: true,
-      width:'small-width-cell'
+      width: 'small-width-cell',
     },
     {
       header: 'Subject',
@@ -51,15 +43,15 @@ const NotificationTable = () => {
       header: 'Type',
       value: 'typeNotification.name',
       sortable: true,
-      width:'very-small-width-cell'
+      width: 'very-small-width-cell',
     },
-   
+
     {
       header: 'Sent At',
       value: 'sentAt',
       sortable: true,
       render: (value: Date | string) => new Date(value).toLocaleDateString(),
-      width: 'very-small-width-cell'
+      width: 'very-small-width-cell',
     },
 
     {
@@ -76,7 +68,7 @@ const NotificationTable = () => {
           minute: '2-digit',
         });
       },
-      width:'small-width-cell'
+      width: 'small-width-cell',
     },
     {
       header: 'Options',
@@ -103,8 +95,8 @@ const NotificationTable = () => {
           />
         </div>
       ),
-      width:'small-width-cell'
-    }
+      width: 'small-width-cell',
+    },
   ];
 
   return (
@@ -114,6 +106,17 @@ const NotificationTable = () => {
           columns={columns}
           data={notificationsList}
           table_title="Notifications"
+          component={
+            <>
+              <CustomButton
+                tooltip="Refresh"
+                variant="solid"
+                color="blue"
+                title=""
+                icon={MdRefresh}
+              />
+            </>
+          }
         />
       </div>
     </div>

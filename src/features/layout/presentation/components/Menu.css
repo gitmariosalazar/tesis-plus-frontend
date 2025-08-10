@@ -7,6 +7,9 @@
   overflow: hidden;
   min-height: 50px;
   background-color: rgb(19, 15, 102);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .logo-plus {
@@ -50,3 +53,15 @@
   color: #1890ff !important;
 }
 
+.menu-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.menu-aside {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}

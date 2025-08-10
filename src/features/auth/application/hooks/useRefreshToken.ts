@@ -2,11 +2,12 @@ import { useAuthContext } from '@/app/providers/AuthProvider';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MessageToastCustom } from '@/shared/components/toast/CustomMessageToast';
-import { apiClient } from '@/infrastructure/api/client/apiClient';
 import { ApiResponse } from '@/shared/api/response/ApiResponse';
 import { CurrentUserResponse } from '@/domain/services/security/authentication/dto/response/AuthCurrentUserResponse';
 import { SessionResponse } from '@/domain/services/security/authentication/dto/response/session.response';
 import { RefreshTokenService } from '../services/RefreshService';
+import { CurrentUserService } from '../services/CurrentUserService';
+import { SessionUserService } from '../services/SessionUserService';
 
 export function useRefreshToken() {
   const {
@@ -23,36 +24,33 @@ export function useRefreshToken() {
   const navigate = useNavigate();
 
   const refreshToken = async (): Promise<boolean> => {
-    const refreshTokenService = new RefreshTokenService();
+    const refreshTokenService: RefreshTokenService = new RefreshTokenService();
+    const currentUserResponse: CurrentUserService = new CurrentUserService();
+    const sessionUserResponse: SessionUserService = new SessionUserService();
+
     setLoading(true);
     setError(null);
 
     try {
-      const response = await refreshTokenService.refreshToken();
-      console.log('Response from refresh token:', response);
+      const refreshTokenResponse = await refreshTokenService.refreshToken();
+      console.log('Response from refresh token:', refreshTokenResponse);
 
-      if (response.status_code !== 201) {
+      if (refreshTokenResponse.status_code !== 201) {
         throw new Error('Failed to refresh token');
       }
 
-      // ✅ Validar sesión inmediatamente después del refresh
       await checkAuthentication();
-
-      // ✅ Obtener el usuario actualizado
-      const userRes =
-        await apiClient.get<ApiResponse<CurrentUserResponse>>(
-          '/auth/current-user'
-        );
-      const user = userRes.data.data;
+      const userRes: ApiResponse<CurrentUserResponse> =
+        await currentUserResponse.getCurrentUser();
+      const user = userRes.data;
       if (!user) throw new Error('Failed to fetch current user');
 
       setUser(user);
       setIsAuthenticated(true);
 
-      // ✅ Verificar estado real de los tokens
-      const sessionRes =
-        await apiClient.get<ApiResponse<SessionResponse>>('/auth/session');
-      const session = sessionRes.data.data;
+      const sessionRes: ApiResponse<SessionResponse> =
+        await sessionUserResponse.getSessionUser();
+      const session = sessionRes.data;
 
       if (session.accessTokenValid && session.refreshTokenValid) {
         setExpiredToken('disabled');

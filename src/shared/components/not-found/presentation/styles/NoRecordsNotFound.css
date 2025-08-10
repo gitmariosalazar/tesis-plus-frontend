@@ -1,0 +1,54 @@
+/*No records found*/
+.no-records-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 87vh;
+}
+
+.info-records {
+  background-color: #f2f6ff;
+  gap: 8px;
+  padding: 10px;
+  margin: 15px;
+  border: 1px solid transparent;
+  border-radius: 0.625rem;
+}
+
+.records-message span {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+  font-size: larger;
+}
+
+.icon-info-records {
+  color: #1e3a8a;
+  font-size: xx-large;
+}
+
+.records-message p {
+  color: #334155;
+  font-weight: bold;
+}
+
+.icon-warning-records {
+  position: relative;
+}
+
+.icon-triangle-record {
+  font-size: 5rem;
+  color: rgb(255, 119, 0);
+}
+
+.icon-list {
+  position: absolute;
+  top: 63%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  color: rgb(251, 240, 220);
+  font-size: 1.2rem;
+}

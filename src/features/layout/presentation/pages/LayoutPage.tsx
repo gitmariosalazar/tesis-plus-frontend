@@ -15,6 +15,12 @@ import { DashboardPage } from '@/features/dashboard/presentation/pages/Dashboard
 import DocumentsPage from '@/features/docs/presentation/pages/DocumentsPage';
 import NotificationTable from '@/features/notifications/presentation/pages/NotificationTable';
 import UsersTable from '@/features/users/presentation/pages/UsersTable';
+import { ProcessReviewTable } from '@/features/process/presentation/pages/ProcessReviewTable';
+import NoRecordsFound from '@/shared/components/not-found/presentation/pages/NoRecordsFound';
+import ProcessDocumentsTable from '@/features/process/presentation/pages/ProcessDocumentsTable';
+import LoadingGate from '@/shared/components/loading/LoadingGate';
+import MyProfile from '@/features/users/presentation/pages/MyProfile';
+import Security from '@/features/users/presentation/pages/Security';
 
 const LayoutPage: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -26,27 +32,83 @@ const LayoutPage: React.FC = () => {
   const renderContent = () => {
     switch (activePage) {
       case 'dashboard':
-        return <DashboardPage />;
+        return (
+          <LoadingGate>
+            <DashboardPage />
+          </LoadingGate>
+        );
       case 'viewProcess':
-        return <ProcessTable />;
+        return (
+          <LoadingGate>
+            <ProcessTable />
+          </LoadingGate>
+        );
       case 'invoices':
-        return <InvoiceTable />;
+        return (
+          <LoadingGate>
+            <InvoiceTable />
+          </LoadingGate>
+        );
       case 'documents':
-        return <DocumentsPage />;
+        return (
+          <LoadingGate>
+            <DocumentsPage />
+          </LoadingGate>
+        );
       case 'notifications':
-        return <NotificationTable />;
+        return (
+          <LoadingGate>
+            <NotificationTable />
+          </LoadingGate>
+        );
       case 'users':
-        return <UsersTable />;
+        return (
+          <LoadingGate>
+            <UsersTable />
+          </LoadingGate>
+        );
       case 'processMonitoring':
-        return <div>Process Monitoring Content</div>;
+        return (
+          <LoadingGate>
+            <NoRecordsFound />
+          </LoadingGate>
+        );
       case 'editUser':
-        return <div>Edit User Content</div>;
+        return (
+          <LoadingGate>
+            <NoRecordsFound />
+          </LoadingGate>
+        );
       case 'security':
-        return <div>Security Settings Content</div>;
+        return (
+          <LoadingGate>
+            <Security />
+          </LoadingGate>
+        );
       case 'profile':
-        return <div>Profile Content</div>;
+        return (
+          <LoadingGate>
+            <MyProfile />
+          </LoadingGate>
+        );
+      case 'processReview':
+        return (
+          <LoadingGate>
+            <ProcessReviewTable />
+          </LoadingGate>
+        );
+      case 'processDocuments':
+        return (
+          <LoadingGate>
+            <ProcessDocumentsTable />
+          </LoadingGate>
+        );
       default:
-        return <div>Select an option</div>;
+        return (
+          <LoadingGate>
+            <NoRecordsFound />
+          </LoadingGate>
+        );
     }
   };
 

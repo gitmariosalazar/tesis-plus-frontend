@@ -1,6 +1,4 @@
 import { RouteObject } from 'react-router-dom';
-import { DashboardPage } from '@/features/dashboard/presentation/pages/DashboardPage';
-import { NotFoundPage } from '@/features/not-found/presentation/pages/NotFoundPage';
 import LoginPage from '@/features/auth/presentation/pages/LoginPage';
 import { PublicRoute } from './public/PublicRoute';
 import Home from '@/features/home/presentation/pages/Home';
@@ -9,13 +7,14 @@ import DocumentsPage from '@/features/docs/presentation/pages/DocumentsPage';
 import UnAuthorizedPage from '@/shared/components/unauthorized/UnAuthorizedPage';
 import LayoutPage from '@/features/layout/presentation/pages/LayoutPage';
 import { ProtectedRoute } from './private/ProtectedRoute';
+import { NotFoundPage } from '@/shared/components/not-found/presentation/pages/NotFoundPage';
 
 export const routes: RouteObject[] = [
   {
     path: '/login',
     element: (
       <PublicRoute>
-          <LoginPage />
+        <LoginPage />
       </PublicRoute>
     ),
   },
@@ -23,7 +22,7 @@ export const routes: RouteObject[] = [
     path: '/register',
     element: (
       <PublicRoute>
-          <SignUpPage />
+        <SignUpPage />
       </PublicRoute>
     ),
   },
@@ -31,7 +30,7 @@ export const routes: RouteObject[] = [
     path: '/dashboard',
     element: (
       <ProtectedRoute>
-          <LayoutPage />
+        <LayoutPage />
       </ProtectedRoute>
     ),
   },
@@ -39,7 +38,7 @@ export const routes: RouteObject[] = [
     path: '/',
     element: (
       <PublicRoute>
-          <Home />
+        <Home />
       </PublicRoute>
     ),
   },
@@ -47,7 +46,7 @@ export const routes: RouteObject[] = [
     path: '*',
     element: (
       <PublicRoute>
-          <NotFoundPage />
+        <NotFoundPage />
       </PublicRoute>
     ),
   },
@@ -55,7 +54,7 @@ export const routes: RouteObject[] = [
     path: '/documents',
     element: (
       <ProtectedRoute>
-          <DocumentsPage />
+        <DocumentsPage />
       </ProtectedRoute>
     ),
   },
@@ -63,7 +62,7 @@ export const routes: RouteObject[] = [
     path: '/unauthorized',
     element: (
       <PublicRoute>
-          <UnAuthorizedPage />
+        <UnAuthorizedPage />
       </PublicRoute>
     ),
   },

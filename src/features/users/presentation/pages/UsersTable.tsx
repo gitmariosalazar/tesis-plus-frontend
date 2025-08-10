@@ -9,6 +9,7 @@ import {
   MdEditSquare,
   MdOutlineAddTask,
   MdOutlinePreview,
+  MdRefresh,
 } from 'react-icons/md';
 import { RiFileSettingsFill } from 'react-icons/ri';
 import UserEditForm from '../components/UserEditForm';
@@ -136,13 +137,22 @@ const UsersTable = () => {
           data={usersData}
           columns={columns}
           table_title="Users Management"
-          button={
-            <CustomButton
-              variant="solid"
-              color="green"
-              title="Add User"
-              icon={MdOutlineAddTask}
-            />
+          component={
+            <>
+              <CustomButton
+                variant="solid"
+                color="green"
+                title="Add User"
+                icon={MdOutlineAddTask}
+              />
+              <CustomButton
+                tooltip="Refresh"
+                variant="solid"
+                color="blue"
+                title=""
+                icon={MdRefresh}
+              />
+            </>
           }
         />
         <UserEditForm isOpen={openEditModal} onClose={handleCloseEditModal} />

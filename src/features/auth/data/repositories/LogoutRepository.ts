@@ -1,12 +1,8 @@
 import { ApiResponse } from '@/shared/api/response/ApiResponse';
 import { apiClient } from '@/infrastructure/api/client/apiClient';
+import { ILogoutSecurityRepository } from '../interfaces/security.interface.repository';
 
-export interface LogoutRepository {
-  logout(): Promise<ApiResponse<void>>;
-  clearSession(): void;
-}
-
-export const logoutRepository: LogoutRepository = {
+export const logoutRepository: ILogoutSecurityRepository = {
   async logout(): Promise<ApiResponse<any>> {
     try {
       const response = await apiClient.post<ApiResponse<any>>('/auth/logout');
