@@ -21,6 +21,7 @@ import ProcessDocumentsTable from '@/features/process/presentation/pages/Process
 import LoadingGate from '@/shared/components/loading/LoadingGate';
 import MyProfile from '@/features/users/presentation/pages/MyProfile';
 import Security from '@/features/users/presentation/pages/Security';
+import EditMyProfile from '@/features/users/presentation/pages/EditMyProfile';
 
 const LayoutPage: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -76,7 +77,7 @@ const LayoutPage: React.FC = () => {
       case 'editUser':
         return (
           <LoadingGate>
-            <NoRecordsFound />
+            <EditMyProfile />
           </LoadingGate>
         );
       case 'security':

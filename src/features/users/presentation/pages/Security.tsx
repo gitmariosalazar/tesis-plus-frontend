@@ -3,8 +3,22 @@ import './MyProfile.css';
 import { CustomButton } from '@/shared/components/button/Button';
 import { FaUserLock, FaUserShield } from 'react-icons/fa';
 import UserChangePassword from '../components/UserChangePassword';
+import UserChangePermission from '../components/UserChangePermission';
 
 const Security = () => {
+  const [isChangingPassword, setIsChangingPassword] = useState(true);
+  const [isChangingPermission, setIsChangingPermission] = useState(false);
+
+  const handleSetEnableChangePassword = () => {
+    setIsChangingPassword(true);
+    setIsChangingPermission(false);
+  };
+
+  const handleSetEnableChangePermission = () => {
+    setIsChangingPermission(true);
+    setIsChangingPassword(false);
+  };
+
   return (
     <div className="profile-page">
       <div className="profile-content">
@@ -35,6 +49,8 @@ const Security = () => {
               icon={FaUserLock}
               color="green"
               variant="dashed"
+              onClick={handleSetEnableChangePassword}
+              disabled={!isChangingPermission}
             />
             <CustomButton
               tooltip="Change Permissions"
@@ -42,11 +58,17 @@ const Security = () => {
               icon={FaUserShield}
               color="cyan"
               variant="dashed"
+              onClick={handleSetEnableChangePermission}
+              disabled={!isChangingPassword}
             />
           </div>
         </div>
         <div className="profile-box security-option">
-          <UserChangePassword />
+          {isChangingPassword ? (
+            <UserChangePassword />
+          ) : isChangingPermission ? (
+            <UserChangePermission />
+          ) : null}
         </div>
       </div>
     </div>

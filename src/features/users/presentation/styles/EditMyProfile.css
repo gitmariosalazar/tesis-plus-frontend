@@ -1,0 +1,14 @@
+.edit-profile {
+  padding: 20px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.form-edit-profile {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid #eee;
+  padding: 20px;
+  border-radius: 5px;
+}

@@ -53,7 +53,7 @@ const UserChangePassword = () => {
             title="Update Password"
             icon={FaSave}
             color="green"
-            variant="dashed"
+            variant="solid"
           />
           <Link className="forgot-password-option" to={'/password-reset'}>
             I forgot my password

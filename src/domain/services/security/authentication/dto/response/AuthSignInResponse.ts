@@ -1,3 +1,5 @@
+import { RoleUserResponse } from '../../../roles/dto/response/role-user.response';
+
 export interface AuthSignInResponse {
   idAccessToken: number;
   idUser: string;
@@ -16,7 +18,8 @@ export interface AuthSignInResponse {
     firstName: string;
     lastName: string;
     userActive: boolean;
-    userType?: number;
+    phoneNumber: string;
+    roleUsers?: RoleUserResponse[];
   };
   createdAt?: string;
   updatedAt?: string;

@@ -96,6 +96,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       const session = await sessionUserService.getSessionUser();
       if (session.data) {
+        console.log(session.data);
         const sessionData = session.data;
 
         if (sessionData.accessTokenValid && sessionData.refreshTokenValid) {
@@ -116,6 +117,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           setExpiredRefreshToken('disabled');
           const response = await currentUserService.getCurrentUser();
           if (response.data) {
+            console.log(response.data);
             setUser(response.data);
             setIsAuthenticated(true);
           } else {
@@ -278,7 +280,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         'Your session could not be refreshed. Please log in again.',
         'top-right'
       );
-      return false; // Indicar que el refresh falló
+      return false;
     }
   }
 
@@ -304,7 +306,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () =>
       document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, [location.pathname]);
+  }, [location.pathname, user]);
 
   useEffect(() => {
     apiClient.setUnauthorizedHandler(async (error) => {

@@ -4,5 +4,4 @@ export interface CreateUserRequest {
   firstName: string;
   lastName: string;
   userActive: boolean;
-  userTypeId: number;
 }

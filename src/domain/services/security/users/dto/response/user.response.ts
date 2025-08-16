@@ -1,3 +1,4 @@
+import { RoleUserResponse } from '../../../roles/dto/response/role-user.response';
 import { UserTypeResponse } from '../../../user-type/dto/response/user-type.response';
 
 export interface UserResponse {
@@ -6,7 +7,8 @@ export interface UserResponse {
   firstName: string;
   lastName: string;
   userActive: boolean;
-  userType: UserTypeResponse;
+  phoneNumber: string;
+  roleUser: RoleUserResponse[];
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }

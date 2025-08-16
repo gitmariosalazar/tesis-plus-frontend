@@ -4,5 +4,4 @@ export interface UpdateUserRequest {
   firstName: string;
   lastName: string;
   userActive: boolean;
-  userTypeId: number;
 }

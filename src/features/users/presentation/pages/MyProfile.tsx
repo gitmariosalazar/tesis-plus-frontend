@@ -3,11 +3,13 @@ import './MyProfile.css';
 import { CustomButton } from '@/shared/components/button/Button';
 import { FaEdit } from 'react-icons/fa';
 import { MdSecurity } from 'react-icons/md';
+import { useAuthContext } from '@/app/providers/AuthProvider';
 
 const MyProfile = () => {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const fullName = 'Mario Salazar';
+  const { user } = useAuthContext(); // Assuming useAuth is a custom hook to get user data
+  const fullName = user?.firstName + ' ' + user?.lastName;
 
   const handleImageClick = () => {
     fileInputRef.current?.click();
@@ -65,11 +67,13 @@ const MyProfile = () => {
 
           <div className="profile-row">
             <p>Full Name:</p>
-            <span>Mario Salazar</span>
+            <span>{fullName}</span>
           </div>
           <div className="profile-row">
-            <p>Birthday:</p>
-            <span>February 2, 1995</span>
+            <p>Register Date:</p>
+            <span>
+              {user?.createdAt ? new Date(user.createdAt).toDateString() : ''}
+            </span>
           </div>
           <div className="edit-profile-option">
             <CustomButton
@@ -90,11 +94,11 @@ const MyProfile = () => {
           </h2>
           <div className="profile-row">
             <p>Email:</p>
-            <span>mariosalazar.ms.10@gmail.com</span>
+            <span>{user?.userEmail}</span>
           </div>
           <div className="profile-row">
             <p>Phone Number:</p>
-            <span>+593994532438</span>
+            <span>{user?.phoneNumber}</span>
           </div>
           <div className="edit-profile-option">
             <CustomButton
@@ -115,7 +119,7 @@ const MyProfile = () => {
           </h2>
           <div className="profile-row">
             <p>Home:</p>
-            <span>Ibarra - El Tejar</span>
+            <span>{'Ibarra - El Tejar'}</span>
           </div>
           <div className="profile-row">
             <p>Work:</p>
