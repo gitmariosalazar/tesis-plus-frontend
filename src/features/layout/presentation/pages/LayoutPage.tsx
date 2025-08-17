@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './LayoutPage.css';
 import MenuLayout from '../components/Menu';
 import { IoNotifications } from 'react-icons/io5';
@@ -26,7 +26,14 @@ import EditMyProfile from '@/features/users/presentation/pages/EditMyProfile';
 const LayoutPage: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const { user, logout } = useAuthContext();
-  const [activePage, setActivePage] = useState<string>('dashboard');
+
+  const [activePage, setActivePage] = useState<string>(
+    () => localStorage.getItem('activePage') || 'dashboard'
+  );
+
+  useEffect(() => {
+    localStorage.setItem('activePage', activePage);
+  }, [activePage]);
 
   const toggleCollapsed = () => setCollapsed((prev) => !prev);
 
@@ -89,7 +96,7 @@ const LayoutPage: React.FC = () => {
       case 'profile':
         return (
           <LoadingGate>
-            <MyProfile />
+            <MyProfile onNavigate={setActivePage} />
           </LoadingGate>
         );
       case 'processReview':
@@ -120,6 +127,7 @@ const LayoutPage: React.FC = () => {
           collapsed={collapsed}
           onToggle={toggleCollapsed}
           onMenuClick={setActivePage}
+          activePage={activePage}
         />
       </aside>
       <header className="header-page">

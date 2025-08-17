@@ -5,7 +5,11 @@ import { FaEdit } from 'react-icons/fa';
 import { MdSecurity } from 'react-icons/md';
 import { useAuthContext } from '@/app/providers/AuthProvider';
 
-const MyProfile = () => {
+interface MyProfileProps {
+  onNavigate?: (page: string) => void;
+}
+
+const MyProfile: React.FC<MyProfileProps> = ({ onNavigate }) => {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { user } = useAuthContext(); // Assuming useAuth is a custom hook to get user data
@@ -82,6 +86,7 @@ const MyProfile = () => {
               icon={FaEdit}
               color="green"
               variant="dashed"
+              onClick={() => onNavigate?.('editUser')}
             />
           </div>
         </div>
@@ -107,6 +112,7 @@ const MyProfile = () => {
               icon={FaEdit}
               color="green"
               variant="dashed"
+              onClick={() => onNavigate?.('editUser')}
             />
           </div>
         </div>
@@ -132,6 +138,7 @@ const MyProfile = () => {
               icon={FaEdit}
               color="green"
               variant="dashed"
+              onClick={() => onNavigate?.('editUser')}
             />
           </div>
         </div>
@@ -154,6 +161,7 @@ const MyProfile = () => {
               icon={MdSecurity}
               color="magenta"
               variant="dashed"
+              onClick={() => onNavigate?.('security')}
             />
           </div>
         </div>

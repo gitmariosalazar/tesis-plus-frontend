@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { act, useEffect, useState } from 'react';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Button, Menu } from 'antd';
 import type { MenuProps } from 'antd';
@@ -77,6 +77,7 @@ interface MenuLayoutProps {
   collapsed: boolean;
   onToggle: () => void;
   onMenuClick?: (key: string) => void;
+  activePage?: string;
 }
 
 // Custom hook to detect mobile screen
@@ -96,6 +97,7 @@ const MenuLayout: React.FC<MenuLayoutProps> = ({
   collapsed,
   onToggle,
   onMenuClick,
+  activePage,
 }) => {
   const isMobile = useIsMobile();
   const finalCollapsed = isMobile ? true : collapsed;
@@ -125,7 +127,7 @@ const MenuLayout: React.FC<MenuLayoutProps> = ({
         className="menu-aside"
         mode="inline"
         inlineCollapsed={finalCollapsed}
-        defaultSelectedKeys={['dashboard']}
+        selectedKeys={[activePage || 'dashboard']}
         defaultOpenKeys={['myAccount']}
         items={items}
         onClick={({ key }) => onMenuClick && onMenuClick(key)}
