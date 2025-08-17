@@ -133,7 +133,7 @@ const EditMyProfileForm = () => {
         <div className="buttons-change-permission">
           <CustomButton
             tooltip="Save permission"
-            title="Save permission"
+            title="Save"
             icon={FaSave}
             color="green"
             variant="solid"
